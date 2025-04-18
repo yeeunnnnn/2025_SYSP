@@ -14,7 +14,7 @@ int main() {
             max = len;
             copy(line, longest);
         }
-    }
+    } 
 
     if (max > 0)
         printf("%s", longest);

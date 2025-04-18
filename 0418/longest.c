@@ -16,7 +16,7 @@ int main() {
         if (len > max) {
             max = len;
             copy(line, longest);
-        }
+        } 
     }
 
     if (max > 0)
