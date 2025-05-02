@@ -1,65 +1,52 @@
-# System Programming 07
+# 📘 컴퓨터 시스템 구조 – 유닉스 커널 & 시스템 호출 요약
 
-## 목차
-1. 컴퓨터 시스템 구조  
-2. 시스템 호출
+## 🔧 유닉스 커널(Kernel)이란?
 
----
+커널은 하드웨어를 운영하고 자원을 관리하는 **운영체제의 핵심**입니다.  
+다음과 같은 서비스를 제공합니다:
 
-## ① 컴퓨터 시스템 구조
-
-### 유닉스 커널 (Kernel)
-
-커널은 **하드웨어를 운영 관리**하여 다음과 같은 **서비스**를 제공합니다:
-
-- 파일 관리 (File management)
-- 프로세스 관리 (Process management)
-- 메모리 관리 (Memory management)
-- 통신 관리 (Communication management)
-- 주변장치 관리 (Device management)
-
-> ![kernel 구조 이미지](image)
+- 📁 **파일 관리 (File Management)**
+- 🔄 **프로세스 관리 (Process Management)**
+- 🧠 **메모리 관리 (Memory Management)**
+- 🧵 **통신 관리 (Communication Management)**
+- 🖨️ **주변장치 관리 (Device Management)**
 
 ---
 
-## ② 시스템 호출 (System Call)
+## 🧩 시스템 호출(System Call)이란?
 
-### 시스템 호출이란?
-
-- 커널에 서비스 요청을 하기 위한 **프로그래밍 인터페이스**
-- 응용 프로그램은 시스템 호출을 통해 **커널에 요청**
-
-> ![시스템 호출 흐름 이미지](image)
+- 사용자 프로그램이 **커널에 서비스 요청**을 보내는 인터페이스
+- 응용 프로그램은 시스템 호출을 통해 **커널 기능**(입출력, 프로세스 생성 등)을 사용
 
 ---
 
-### 시스템 호출 요약
+## 📜 시스템 호출 요약
 
-| 주요 자원         | 시스템 호출 예시                                      |
-|------------------|------------------------------------------------------|
-| 파일             | `open()`, `close()`, `read()`, `write()`, `dup()`, `lseek()` |
-| 프로세스         | `fork()`, `exec()`, `exit()`, `wait()`, `getpid()`, `getppid()` |
-| 메모리           | `malloc()`, `calloc()`, `free()` (*라이브러리 함수지만 시스템 자원 활용*) |
-| 시그널           | `signal()`, `alarm()`, `kill()`, `sleep()`            |
-| 프로세스 간 통신 | `pipe()`, `socket()`                                  |
-
----
-
-## 유닉스에서 파일
-
-- **연속된 바이트의 나열**
-- 특별한 포맷 없음 (바이너리/텍스트 구분 없음)
-- **디스크 파일뿐 아니라 외부 장치 인터페이스** 역할도 가능
+| 주요 자원         | 시스템 호출 예시 |
+|------------------|-------------------|
+| 📁 파일           | `open()`, `close()`, `read()`, `write()`, `dup()`, `lseek()` |
+| 🔄 프로세스       | `fork()`, `exec()`, `exit()`, `wait()`, `getpid()`, `getppid()` |
+| 🧠 메모리 관리     | `malloc()`, `calloc()`, `free()` *(libc 함수)* |
+| 🔔 시그널 처리     | `signal()`, `alarm()`, `kill()`, `sleep()` |
+| 🧵 프로세스 간 통신 | `pipe()`, `socket()` 등 |
 
 ---
 
-## 주요 시스템 호출
+## 📁 유닉스에서의 파일
 
-### 🔹 `open()` - 파일 열기
+- 유닉스에서 파일은 **연속된 바이트의 나열**이며,
+- 별도의 포맷 없이 데이터를 저장
+- **디스크 파일**뿐 아니라 **장치**도 파일처럼 다룸
+
+---
+
+## 📂 파일 관련 주요 시스템 호출
+
+### 1. `open()` – 파일 열기
 
 ```c
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int open(const char *path, int oflag, [mode_t mode]);
+int open(const char *path, int oflag [, mode_t mode]);
