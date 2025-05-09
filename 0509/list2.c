@@ -52,7 +52,7 @@ void printStat(char *pathname, char *file, struct stat *st) {
     printf("%9ld ", st->st_size);                                  // long int
     printf("%.12s ", ctime(&st->st_mtime)+4);
     printf("%s", file);
-}
+} 
 
 
 /* 파일 타입을 리턴 */
