@@ -8,4 +8,4 @@ int main() {
     printf("[%d] 프로세스 : 리턴값 %d\n", getpid(), pid);
     printf("[%d] 프로세스 : 리턴값 %d\n", getpid(), pid);
     printf("[%d] 프로세스 : 리턴값 %d\n", getpid(), pid);
-} 
+}  

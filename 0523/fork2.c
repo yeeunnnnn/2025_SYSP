@@ -12,4 +12,4 @@ int main() {
     else { // 부모 프로세스
         printf("[Parent] : Hello, world pid=%d\n", getpid());
     }
-}
+} 
